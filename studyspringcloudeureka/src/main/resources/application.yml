@@ -1,0 +1,31 @@
+server:
+  port: 8761
+  
+spring:
+  application:
+    name: study-eureka
+
+# 安全认证的配置  
+security:  
+  basic:  
+    enabled: false  
+  user:  
+    name: yk  # 用户名  
+    password: yk   # 用户密码
+
+#注册中心服务
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    service-url:  
+      defaultZone: http://localhost:8761/eureka  # 安全的注册地址  ${security.user.name}:${security.user.password}@
+    healthcheck:
+      enabled: true
+  server: 
+    enableSelfPreservation: true  #是否开启注销服务
+    eviction-interval-timer-in-ms: 30000       # 续期时间，即扫描失效服务的间隔时间（缺省为60*1000ms）
+  instance: 
+    leaseRenewalIntervalInSeconds: 10 #发送心跳时间
+    LeaseExpirationDurationInSeconds: 30
+ 

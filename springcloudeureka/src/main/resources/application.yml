@@ -1,3 +1,4 @@
+debug: true
 server:
   port: 8761
   
@@ -16,10 +17,8 @@ security:
 #注册中心服务
 eureka:
   client:
-    registerWithEureka: false
+    registerWithEureka: true
     fetchRegistry: false
-    service-url:  
-      defaultZone: http://localhost:8761/eureka  # 安全的注册地址  ${security.user.name}:${security.user.password}@
     healthcheck:
       enabled: true
   server: 
@@ -28,4 +27,6 @@ eureka:
   instance: 
     leaseRenewalIntervalInSeconds: 10 #发送心跳时间
     LeaseExpirationDurationInSeconds: 30
+    instanceId: test-11
+
  

@@ -1,5 +1,4 @@
-debug: true
-server:
+server: 
   port: 8761
   
 spring:
@@ -18,15 +17,20 @@ security:
 eureka:
   client:
     registerWithEureka: true
-    fetchRegistry: false
+    fetchRegistry: true
     healthcheck:
       enabled: true
   server: 
     enableSelfPreservation: true  #是否开启注销服务
     eviction-interval-timer-in-ms: 30000       # 续期时间，即扫描失效服务的间隔时间（缺省为60*1000ms）
   instance: 
+    hostname: localhost
     leaseRenewalIntervalInSeconds: 10 #发送心跳时间
     LeaseExpirationDurationInSeconds: 30
-    instanceId: test-11
+    statusPageUrl: http://${eureka.instance.hostname}:${server.port}/info
+    healthCheckUrl: http://${eureka.instance.hostname}:${server.port}/health
+    homePageUrl: http://${eureka.instance.hostname}:${server.port}/
+    instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+    
 
  
